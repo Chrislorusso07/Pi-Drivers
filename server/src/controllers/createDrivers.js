@@ -1,43 +1,46 @@
-const { Op } = require("sequelize");
 const { Driver, Teams } = require("../db");
 
-const createDrivers = async (req, res) => {
+const createDriver = async (req, res) => {
   const {
     name,
     last_name,
     description,
-    nationality,
-    date_of_birth,
-    teams,
     img,
+    date_of_birth,
+    nationality,
+    teams,
   } = req.body;
   if (
     !name ||
-    !last_name ||
     !description ||
-    !teams ||
+    !img ||
     !date_of_birth ||
-    !nationality
+    !nationality ||
+    !last_name ||
+    !teams // Asegúrate de que la variable "teams" esté presente en el cuerpo de la solicitud
   ) {
-    throw Error("Missing data. Por favor complete los campos");
+    throw Error("Missing data. Por favor complete los campos requeridos");
   }
 
   try {
     const postDriver = await Driver.create({
       name,
-      last_name,
       description,
+      img,
       nationality,
       date_of_birth,
-      teams,
-      img,
+      last_name,
     });
     teams.forEach(async (el) => {
-      let teams = await Teams.findOne({ where: { name: el } });
-      await postDriver.addTeams(teams);
+      let team = await Teams.findOne({ where: { name: el } });
+      if (team) {
+        await postDriver.addTeam(team);
+        // } else {
+        //   throw Error(`Could not find the team`);
+        // }
+        // }
+      }
     });
-    if (!teams.length)
-      throw Error(`Could not find the country named: ${teams}`);
 
     res.status(201).send("Driver created successfully");
   } catch (error) {
@@ -46,4 +49,4 @@ const createDrivers = async (req, res) => {
   }
 };
 
-module.exports = createDrivers;
+module.exports = createDriver;

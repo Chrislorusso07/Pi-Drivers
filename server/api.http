@@ -6,4 +6,11 @@ GET http://localhost:3001/teams
 
 ###
 
-GET http://localhost:3001/drivers/003eb4e1-7966-4262-a9a9-7b0f03179787
+GET http://localhost:3001/drivers/00bdc09d-1bd4-4f28-8474-e40d18aa338f
+
+###
+
+POST http://localhost:3001/drivers
+Content-Type: application/json
+
+{"name": "Lionel", "last_name": "Messi", "description": "aloja", "nationality": "Argentina", "date_of_birth": "20-03-2001","teams": ["McLaren", "Mercedes"]}

@@ -1,5 +1,5 @@
 const Form = () => {
-  return "Este es el Form";
+  <div>Este es el Form</div>;
 };
 
 export default Form;

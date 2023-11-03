@@ -42,7 +42,9 @@ const createDriver = async (req, res) => {
       }
     });
 
-    res.status(201).send("Driver created successfully");
+    res
+      .status(201)
+      .json({ message: "Driver created successfully", driver: postDriver });
   } catch (error) {
     console.error(error);
     throw Error("Could not create driver");

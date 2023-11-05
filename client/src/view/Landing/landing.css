@@ -29,7 +29,7 @@
 }
 
 .enter-link:hover {
-  background-color: #0b0202; /* Cambia el color de fondo del botón al pasar el mouse */
+  background-color: #121011; /* Cambia el color de fondo del botón al pasar el mouse */
 }
 
 .entrar {
@@ -47,13 +47,13 @@
  .entrar:hover {
   background-color: #fa0606;
   animation: slidernbw 5s linear infinite;
-  color: #000;
+  color: #040404;
  }
 
  footer {
   text-align: center;
   padding: 1rem 0;
-  background-color: rgba(0, 0, 0, 0.8); /* Agrega un fondo semitransparente para que el texto sea legible */
+  background-color: rgba(3, 3, 7, 0.705) ; /* Agrega un fondo semitransparente para que el texto sea legible */
   width: 100%; 
   color: azure;
   margin-top: -50px;

@@ -2,22 +2,24 @@ const { Teams } = require("../db");
 const axios = require("axios");
 const URL = "http://localhost:5000/drivers";
 
-const cleanTeams = (drivers) => {
+function cleanTeams(drivers) {
   const uniqueTeams = new Set();
 
-  drivers.forEach((driver) => {
+  for (let i = 0; i < drivers.length; i++) {
+    const driver = drivers[i];
     if (driver.teams) {
-      const teamsArray = driver.teams.split(",").map((team) => team.trim());
-      teamsArray.forEach((team) => {
+      const teamsArray = driver.teams.split(",");
+      for (let j = 0; j < teamsArray.length; j++) {
+        const team = teamsArray[j].trim();
         if (team.length > 0) {
           uniqueTeams.add(team);
         }
-      });
+      }
     }
-  });
+  }
 
-  return [...uniqueTeams];
-};
+  return Array.from(uniqueTeams);
+}
 
 const getAllTeams = async () => {
   const response = await axios(URL);
@@ -52,7 +54,7 @@ const getAllTeams = async () => {
 const getTeams = async (req, res) => {
   try {
     const response = await getAllTeams();
-    res.status(200).json(response);
+    res.status(203).json(response);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

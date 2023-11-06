@@ -9,7 +9,7 @@ function Form() {
     nationality: "",
     img: "",
     date_of_birth: "",
-    descriptiomn: "",
+    description: "",
     teams: [],
   });
 
@@ -19,7 +19,7 @@ function Form() {
 
   useEffect(() => {
     dispatch(getTeams());
-  });
+  }, [dispatch]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -90,6 +90,7 @@ function Form() {
             </option>
           ))}
         </select>
+
         <br />
         <button type="submit">Crear Conductor</button>
       </form>

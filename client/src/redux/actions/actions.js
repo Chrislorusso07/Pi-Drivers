@@ -24,3 +24,11 @@ export function getTeams() {
     } catch (error) {}
   };
 }
+
+export function postDriver(state) {
+  return async function (dispatch) {
+    try {
+      await axios.post("http://localhost:3001/drivers", state);
+    } catch (error) {}
+  };
+}

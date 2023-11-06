@@ -1,12 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Imbue:opsz@10..100&display=swap');
 .card-container {
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    box-shadow: 0 2px 4px rgba(246, 8, 8, 0.47);
+    /* padding: 50px; */
     margin: 20px;
     text-align: center;
-    background-color: #c8c8dda8;
+    background-color: #f412124a;
     font-family: Imbue;
+    width: 200px;
+    height: 350px;
+    position: relative;
+
+    top: 100px;
   }
   
   .card-title {
@@ -27,10 +32,13 @@
   
  
   .card-image {
-    max-width: 100%;
-    height: auto;
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    /* height: auto;
+    width: 100px;
     margin-top: 10px;
-    border-radius: 5px;
+    border-radius: 5px; */
   }
 
   .cardlink {

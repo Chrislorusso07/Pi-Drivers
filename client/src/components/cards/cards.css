@@ -1,6 +1,6 @@
 .Container{
     display: flex;
-    flex-flow: wrap;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
-   
  }

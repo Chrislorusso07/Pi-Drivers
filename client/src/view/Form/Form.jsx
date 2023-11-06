@@ -1,27 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { getTeams } from "../../redux/actions/actions";
+import { useSelector, useDispatch } from "react-redux";
 
 function Form() {
   const [driverData, setDriverData] = useState({
-    nombre: "",
-    apellido: "",
-    nacionalidad: "",
-    imagen: "",
-    fechaNacimiento: "",
-    descripcion: "",
-    escuderias: [],
+    name: "",
+    last_name: "",
+    nationality: "",
+    img: "",
+    date_of_birth: "",
+    descriptiomn: "",
+    teams: [],
+  });
+
+  const dispatch = useDispatch();
+
+  const allTeams = useSelector((state) => state.allTeams);
+
+  useEffect(() => {
+    dispatch(getTeams());
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setDriverData({ ...driverData, [name]: value });
-  };
-
-  const handleEscuderiasChange = (e) => {
-    const { value } = e.target;
-    setDriverData({
-      ...driverData,
-      escuderias: [...driverData.escuderias, value],
-    });
   };
 
   const handleSubmit = (e) => {
@@ -33,65 +35,61 @@ function Form() {
     <div>
       <h1>Crea tu conductor!</h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="nombre">Nombre:</label>
+        <label htmlFor="name">Nombre:</label>
         <input
           type="text"
-          name="nombre"
-          value={driverData.nombre}
+          name="name"
+          value={driverData.name}
           onChange={handleChange}
         />
         <br />
-        <label htmlFor="apellido">Apellido:</label>
+        <label htmlFor="last_name">Apellido:</label>
         <input
           type="text"
-          name="apellido"
-          value={driverData.apellido}
+          name="last_name"
+          value={driverData.last_name}
           onChange={handleChange}
         />
         <br />
-        <label htmlFor="nacionalidad">Nacionalidad:</label>
+        <label htmlFor="nationality">Nacionalidad:</label>
         <input
           type="text"
-          name="nacionalidad"
-          value={driverData.nacionalidad}
+          name="nationality"
+          value={driverData.nationality}
           onChange={handleChange}
         />
         <br />
-        <label htmlFor="imagen">Imagen:</label>
+        <label htmlFor="img">Imagen:</label>
         <input
           type="text"
-          name="imagen"
-          value={driverData.imagen}
-          onChange={handleChange}
-        />
-        <br />´<label htmlFor="fechaNacimiento">Fecha de Nacimiento:</label>
-        <input
-          type="text"
-          name="fechaNacimiento"
-          value={driverData.fechaNacimiento}
+          name="img"
+          value={driverData.img}
           onChange={handleChange}
         />
         <br />
-        <label htmlFor="descripcion">Descripción:</label>
+        <label htmlFor="date_of_birth">Fecha de Nacimiento:</label>
+        <input
+          type="text"
+          name="date_of_birth"
+          value={driverData.date_of_birth}
+          onChange={handleChange}
+        />
+        <br />
+        <label htmlFor="description">Descripción:</label>
         <textarea
-          name="descripcion"
-          value={driverData.descripcion}
+          name="description"
+          value={driverData.description}
           onChange={handleChange}
         />
         <br />
-        <label htmlFor="escuderias">Escuderías:</label>
-        <select name="escuderias" onChange={handleEscuderiasChange}>
-          <option value="">Seleccionar</option>
-          <option value="Ferrari">Ferrari</option>
-          <option value="Mercedes">Mercedes</option>
-          <option value="Red Bull">Red Bull</option>
-          {/* Agrega más opciones aquí */}
-        </select>
-        <ul>
-          {driverData.escuderias.map((escuderia, index) => (
-            <li key={index}>{escuderia}</li>
+        <label htmlFor="teams">Escuderías:</label>
+        <select name="teams" onChange={handleChange}>
+          {allTeams.map((p) => (
+            <option key={p} value={p}>
+              {p}
+            </option>
           ))}
-        </ul>
+        </select>
         <br />
         <button type="submit">Crear Conductor</button>
       </form>

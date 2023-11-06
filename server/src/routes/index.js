@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const getIdDrivers = require("../controllers/getIdDrivers");
-const getTeams = require("../controllers/getTeams");
+const { getTeams } = require("../controllers/getTeams");
 const createDrivers = require("../controllers/createDrivers");
 const getDrivers = require("../controllers/getDrivers");
 

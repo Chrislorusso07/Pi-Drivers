@@ -1,0 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu");
+.navbar {
+    display: flex;
+    align-items: center;
+    background-color: #333333ec;
+    height: 60px;
+    justify-content: space-between;
+    font-family: Ubuntu;
+    background-color:whitesmoke;
+}
+
+ .salir{
+    padding: 50px;
+    color:red
+ }
+
+ .home {
+    padding: 50px;
+    color:darkgreen
+ }
+
+ .crear {
+    color:rgb(7, 199, 135)
+ }

@@ -3,6 +3,7 @@ import Cards from "../../components/cards/cards";
 import { useDispatch, useSelector } from "react-redux";
 import { getDrivers } from "../../redux/actions/actions";
 import React from "react";
+import "./home.css";
 
 const Home = () => {
   const dispatch = useDispatch();

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_DRIVERS } from "./action-types";
+import { GET_DRIVERS, GET_TEAMS } from "./action-types";
 
 export function getDrivers() {
   return async function (dispatch) {
@@ -9,8 +9,18 @@ export function getDrivers() {
         type: GET_DRIVERS,
         payload: response.data,
       });
-    } catch (error) {
-      alert(error.response.data.error);
-    }
+    } catch (error) {}
+  };
+}
+
+export function getTeams() {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get("http://localhost:3001/teams");
+      dispatch({
+        type: GET_TEAMS,
+        payload: response.data,
+      });
+    } catch (error) {}
   };
 }

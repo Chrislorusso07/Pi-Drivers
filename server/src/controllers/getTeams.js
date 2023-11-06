@@ -1,27 +1,61 @@
-const axios = require("axios");
 const { Teams } = require("../db");
+const axios = require("axios");
+const URL = "http://localhost:5000/drivers";
 
-const getTeams = async (req, res) => {
+const cleanTeams = (drivers) => {
+  const uniqueTeams = new Set();
+
+  drivers.forEach((driver) => {
+    if (driver.teams) {
+      const teamsArray = driver.teams.split(",").map((team) => team.trim());
+      teamsArray.forEach((team) => {
+        if (team.length > 0) {
+          uniqueTeams.add(team);
+        }
+      });
+    }
+  });
+
+  return [...uniqueTeams];
+};
+
+const getAllTeams = async () => {
+  const response = await axios(URL);
+  const teams = cleanTeams(response.data);
+
   const teamsInDB = await Teams.findAll();
 
   if (teamsInDB.length === 0) {
-    const response = await axios.get("http://localhost:5000/drivers");
+    await Promise.all(
+      teams.map(async (team) => {
+        try {
+          const [newTeam, created] = await Teams.findOrCreate({
+            where: { name: team },
+            defaults: { name: team },
+          });
 
-    if (response.status === 200) {
-      const teams = response.data
-        .filter((driver) => driver.teams) // Filtrar los conductores que tienen la propiedad 'teams'
-        .map((driver) => driver.teams.split(", "))
-        .flat();
+          if (created) {
+            console.log(`Equipo creado: ${team}`);
+          } else {
+            console.log(`Equipo ya existente: ${team}`);
+          }
+        } catch (error) {
+          console.error(`Error al crear el equipo ${team}:`, error);
+        }
+      })
+    );
+  }
 
-      // Remove duplicates from the array of teams
-      const uniqueTeams = [...new Set(teams)];
+  return teams;
+};
 
-      return res.json(uniqueTeams);
-    } else {
-      throw new Error("Error al obtener equipos desde la API");
-    }
-  } else {
-    return res.json(teamsInDB);
+const getTeams = async (req, res) => {
+  try {
+    const response = await getAllTeams();
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
   }
 };
-module.exports = getTeams;
+
+module.exports = { getTeams };

@@ -2,7 +2,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import Home from "./view/Home/Home";
 import Form from "./view/Form/Form";
 import Landing from "./view/Landing/Landing";
-import Detail from "./view/Detail/Detail";
+import Detail from "./view/DetalleConductor/detail";
 import NavBar from "./components/navBar/navBar";
 
 function App() {

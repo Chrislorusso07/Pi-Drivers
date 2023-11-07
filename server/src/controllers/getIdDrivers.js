@@ -1,23 +1,24 @@
-const { Driver, Teams } = require("../db");
+const axios = require("axios");
+const { Driver, Teams } = require("../db.js");
+const { getAllDrivers } = require("../helper/driversMap");
 
-const getIdDrivers = async (req, res) => {
-  try {
-    const { idDriver } = req.params;
+const getId = async (id, source) => {
+  let driver;
+  if (source === "api") {
+    const response = await axios.get(`http://localhost:5000/drivers/${id}`);
+    driver = response.data;
+  } else {
+    driver = await Driver.findByPk(id, { include: [Teams] });
+  }
 
-    const response = await Driver.findByPk(idDriver, {
-      include: {
-        model: Teams,
-        attributes: ["name"],
-      },
-    });
-
-    if (!response) {
-      return res.status(404).json({ error: "Could not find Driver" });
-    }
-    res.status(200).json(response);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
+  if (driver) {
+    const drivers = getAllDrivers([driver]);
+    return drivers[0];
+  } else {
+    throw new Error(`Driver with ID ${id} not found`);
   }
 };
 
-module.exports = getIdDrivers;
+module.exports = {
+  getId,
+};

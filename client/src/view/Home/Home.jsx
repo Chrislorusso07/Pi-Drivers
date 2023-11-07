@@ -6,9 +6,9 @@ import React from "react";
 import "./home.css";
 
 const Home = () => {
-  const dispatch = useDispatch();
-
   const allDrivers = useSelector((state) => state.allDrivers);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getDrivers());
@@ -16,7 +16,7 @@ const Home = () => {
 
   return (
     <div>
-      <Cards allDrivers={allDrivers}></Cards>
+      <Cards drivers={allDrivers}></Cards>
     </div>
   );
 };

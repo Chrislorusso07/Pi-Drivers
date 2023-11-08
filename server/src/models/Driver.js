@@ -31,6 +31,6 @@ module.exports = (sequelize) => {
     date_of_birth: {
       type: DataTypes.DATE,
     },
-    create: { type: DataTypes.BOOLEAN, defaultValue: false },
+    create: { type: DataTypes.BOOLEAN, defaultValue: true },
   });
 };

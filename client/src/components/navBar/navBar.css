@@ -6,7 +6,7 @@
     height: 60px;
     justify-content: space-between;
     font-family: Ubuntu;
-    background-color:whitesmoke;
+    background-color:rgb(18, 2, 2);
 }
 
  .salir{
@@ -22,3 +22,4 @@
  .crear {
     color:rgb(7, 199, 135)
  }
+

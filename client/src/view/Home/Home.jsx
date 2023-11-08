@@ -1,21 +1,42 @@
 import { useEffect } from "react";
 import Cards from "../../components/cards/cards";
 import { useDispatch, useSelector } from "react-redux";
-import { getDrivers } from "../../redux/actions/actions";
+import { changePage, getDrivers } from "../../redux/actions/actions";
 import React from "react";
+
 import "./home.css";
 
 const Home = () => {
   const allDrivers = useSelector((state) => state.allDrivers);
 
+  const currentPage = useSelector((state) => state.currentPage);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getDrivers());
+    dispatch(changePage("current"));
   }, []);
 
-  return (
+  const pagination = (event) => {
+    dispatch(changePage(event.target.name));
+  };
+
+  return allDrivers.length === 0 ? (
+    <h1>Cargando datos</h1>
+  ) : (
     <div>
+      <div>
+        <button onClick={pagination} name="prev">
+          {"<<"}
+        </button>
+        <div>
+          <h3>{currentPage + 1}</h3>
+        </div>
+        <button onClick={pagination} name="next">
+          {">>"}
+        </button>
+      </div>
       <Cards drivers={allDrivers}></Cards>
     </div>
   );

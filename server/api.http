@@ -13,4 +13,4 @@ GET http://localhost:3001/drivers/00bdc09d-1bd4-4f28-8474-e40d18aa338f
 POST http://localhost:3001/drivers
 Content-Type: application/json
 
-{"name": "Lionel", "last_name": "Messi", "description": "aloja", "nationality": "Argentina", "date_of_birth": "1985-05-15","teams": ["Alfa Romeo"], "img": "coso"}
+{"name": "Lionel", "last_name": "Messi", "description": "aloja", "nationality": "Argentina", "date_of_birth": "1985-05-15","teams": ["Alfa Romeo"]}

@@ -13,7 +13,6 @@ const createDriver = async (req, res) => {
   if (
     !name ||
     !description ||
-    !img ||
     !date_of_birth ||
     !nationality ||
     !last_name ||

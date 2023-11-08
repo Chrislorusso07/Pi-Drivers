@@ -1,5 +1,6 @@
 function getAllDrivers(drivers) {
   // Verificamos que la variable drivers esté inicializada y contenga una lista de objetos.
+
   if (drivers && Array.isArray(drivers) && drivers.length > 0) {
     // La variable drivers está inicializada y contiene una lista de objetos.
     return drivers
@@ -33,12 +34,15 @@ function getAllDrivers(drivers) {
           const name = driver.name.forename || driver.name;
           const last_name = driver.name.surname || driver.last_name;
 
+          const image =
+            driver.image && driver.image.url ? driver.image.url : driver.img;
+
           return {
             id: driver.id,
             name: name,
             last_name: last_name,
             description: driver.description,
-            img: driver.image.url || driver.img,
+            img: image,
             teams: teams,
             nationality: driver.nationality,
             date_of_birth: driver.dob || driver.date_of_birth,

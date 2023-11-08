@@ -9,7 +9,17 @@ const Card = ({ name, nationality, image, teams, id, last_name }) => {
         <h2 className="card-apellido">{last_name}</h2>
         <h3 className="card-subtitle">{teams}</h3>
         <h3>{nationality}</h3>
-        <img className="card-image" src={image} alt={name} />
+        {image ? (
+          <img className="card-image" src={image} alt={name} />
+        ) : (
+          <img
+            className="card-image"
+            src={
+              "https://img.redbull.com/images/c_limit,w_1500,h_1000,f_auto,q_auto/redbullcom/2020/8/1/uav3tfc0rc3jj6mvpqmh/max-verstappen-casco"
+            }
+            alt={name}
+          />
+        )}
       </div>
     </NavLink>
   );

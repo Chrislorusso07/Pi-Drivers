@@ -6,11 +6,11 @@ const Cards = ({ drivers }) => {
     <div className="Container">
       {drivers.map((driver) => (
         <Card
+          key={driver.id}
           name={driver.name}
           last_name={driver.last_name}
           image={driver.img}
           teams={driver.teams}
-          key={driver.id}
           id={driver.id}
           nationality={driver.nationality}
         ></Card>

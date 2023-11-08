@@ -1,12 +1,19 @@
 import axios from "axios";
-import { GET_DRIVERS, GET_TEAMS, GET_DETAILS } from "./action-types";
+import {
+  GET_DRIVERS,
+  GET_TEAMS,
+  GET_DETAILS,
+  PAGINATION,
+  ALPHABETIC_ORDER,
+  BIRTHDATE_ORDER,
+  ORDER_FROM,
+} from "./action-types";
 
 export function getDrivers() {
   return async function (dispatch) {
     try {
       const response = await axios.get("http://localhost:3001/drivers");
       const drivers = response.data;
-      console.log(drivers, "DE ACA VIENE LA ACTION");
       dispatch({
         type: GET_DRIVERS,
         payload: drivers,
@@ -41,7 +48,6 @@ export const getDetail = (id) => {
       const driverDetail = await axios.get(
         `http://localhost:3001/drivers/${id}`
       );
-      console.log(driverDetail, "ACTIONS DETAIL ACA");
       if (driverDetail.data) {
         const driverData = {
           ...driverDetail.data,
@@ -58,3 +64,33 @@ export const getDetail = (id) => {
     }
   };
 };
+
+export function changePage(order) {
+  return async function (dispatch) {
+    try {
+      dispatch({
+        type: PAGINATION,
+        payload: order,
+      });
+    } catch (error) {
+      alert(error.response.data.error);
+    }
+  };
+}
+
+export const alphabeticOrder = (value) => ({
+  type: ALPHABETIC_ORDER,
+  payload: value,
+});
+
+export const birthdateOrder = (order) => {
+  return {
+    type: BIRTHDATE_ORDER,
+    payload: order,
+  };
+};
+
+export const orderFrom = (value) => ({
+  type: ORDER_FROM,
+  payload: value,
+});

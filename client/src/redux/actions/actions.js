@@ -36,14 +36,6 @@ export function getTeams() {
   };
 }
 
-export function postDriver(state) {
-  return async function (dispatch) {
-    try {
-      await axios.post("http://localhost:3001/drivers", state);
-    } catch (error) {}
-  };
-}
-
 export const getDetail = (id) => {
   return async function (dispatch) {
     try {
@@ -106,3 +98,12 @@ export const restoreInitialDrivers = (initialDrivers) => ({
   type: RESTORE_INITIAL_DRIVERS,
   payload: initialDrivers,
 });
+
+export function postDriver(state) {
+  return async function (dispatch) {
+    try {
+      await axios.post("http://localhost:3001/drivers", state);
+      alert("Conductor creado exitosamente!");
+    } catch (error) {}
+  };
+}

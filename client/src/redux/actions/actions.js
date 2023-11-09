@@ -7,6 +7,8 @@ import {
   ALPHABETIC_ORDER,
   BIRTHDATE_ORDER,
   ORDER_FROM,
+  SEARCH_DRIVERS,
+  RESTORE_INITIAL_DRIVERS,
 } from "./action-types";
 
 export function getDrivers() {
@@ -93,4 +95,14 @@ export const birthdateOrder = (order) => {
 export const orderFrom = (value) => ({
   type: ORDER_FROM,
   payload: value,
+});
+
+export const searchDrivers = (searchResults) => ({
+  type: SEARCH_DRIVERS,
+  payload: searchResults,
+});
+
+export const restoreInitialDrivers = (initialDrivers) => ({
+  type: RESTORE_INITIAL_DRIVERS,
+  payload: initialDrivers,
 });

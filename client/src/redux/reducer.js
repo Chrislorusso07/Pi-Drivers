@@ -6,6 +6,8 @@ import {
   ALPHABETIC_ORDER,
   BIRTHDATE_ORDER,
   ORDER_FROM,
+  SEARCH_DRIVERS,
+  RESTORE_INITIAL_DRIVERS,
 } from "./actions/action-types";
 
 let initialState = {
@@ -124,6 +126,18 @@ function rootReducer(state = initialState, action) {
           allDrivers: driversFilteredAPI,
         };
       }
+
+    case SEARCH_DRIVERS:
+      return {
+        ...state,
+        allDrivers: action.payload,
+      };
+
+    case RESTORE_INITIAL_DRIVERS:
+      return {
+        ...state,
+        allDrivers: [...state.allDriversBackUp],
+      };
 
     default:
       return state;

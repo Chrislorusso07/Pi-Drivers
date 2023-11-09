@@ -6,6 +6,7 @@ import {
   orderFrom,
 } from "../../redux/actions/actions";
 import { useDispatch } from "react-redux";
+import SearchBar from "../searchBar/searchBars";
 
 const NavBar = () => {
   const dispatch = useDispatch();
@@ -38,6 +39,7 @@ const NavBar = () => {
         <option value="A-Z">A-Z</option>
         <option value="Z-A">Z-A</option>
       </select>
+      <SearchBar></SearchBar>
       <div className="edad">
         <label htmlFor="date">EDAD</label>
         <select id="date" onChange={birthdateOrderr}>

@@ -4,6 +4,7 @@ import {
   alphabeticOrder,
   birthdateOrder,
   orderFrom,
+  restoreInitialDrivers,
 } from "../../redux/actions/actions";
 import { useDispatch } from "react-redux";
 import SearchBar from "../searchBar/searchBars";
@@ -26,6 +27,10 @@ const NavBar = () => {
     } else {
       dispatch(birthdateOrder("desc"));
     }
+  };
+
+  const resetFilters = () => {
+    dispatch(restoreInitialDrivers());
   };
 
   const orderFromm = (event) => {
@@ -59,6 +64,7 @@ const NavBar = () => {
       <Link to={"/create"} className="crear">
         CREAR
       </Link>
+      <button onClick={resetFilters}>Restablecer Filtros</button>
       <Link to={"/"} className="salir">
         SALIR
       </Link>

@@ -8,7 +8,7 @@ import {
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useDispatch();
-  const allDrivers = useSelector((state) => state.allDrivers);
+  const allDriversBackUp = useSelector((state) => state.allDriversBackUp); // Accede a la lista completa de conductores
   const allDriversInitial = useSelector((state) => state.allDriversBackUp);
 
   const handleSearch = (event) => {
@@ -20,7 +20,7 @@ const SearchBar = () => {
       dispatch(restoreInitialDrivers(allDriversInitial));
     } else {
       // Filtra los conductores basados en el término de búsqueda en name o last_name
-      const filteredDrivers = allDrivers.filter(
+      const filteredDrivers = allDriversBackUp.filter(
         (driver) =>
           driver.name.toLowerCase().includes(value.toLowerCase()) ||
           driver.last_name.toLowerCase().includes(value.toLowerCase())

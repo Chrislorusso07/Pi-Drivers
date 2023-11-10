@@ -28,7 +28,7 @@ const Home = () => {
     <h1>Cargando datos</h1>
   ) : (
     <div>
-      <div>
+      <div className="paginacion">
         <button onClick={pagination} name="prev">
           {"<<"}
         </button>

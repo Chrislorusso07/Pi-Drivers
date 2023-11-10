@@ -26,8 +26,9 @@ function rootReducer(state = initialState, action) {
     case GET_DRIVERS:
       return {
         ...state,
-        allDrivers: [...action.payload].slice(0, 9),
+        allDrivers: [...action.payload].slice(0, ITEMS_PER_PAGE),
         allDriversBackUp: action.payload,
+        currentPage: 0,
       };
 
     case GET_TEAMS:

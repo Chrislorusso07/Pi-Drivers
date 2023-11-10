@@ -193,6 +193,11 @@ function Form() {
             </option>
           ))}
         </select>
+        <div>
+          {state.teams.map((t) => (
+            <span>{t}/</span>
+          ))}
+        </div>
         <label className="form-errors">{errors.teams}</label>
         <br />
         <button type="submit">Crear Conductor</button>

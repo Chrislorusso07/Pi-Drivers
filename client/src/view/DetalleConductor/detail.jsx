@@ -31,7 +31,7 @@ const Detail = () => {
 
       <p>Fecha de Nacimiento: {driverDetail.date_of_birth}</p>
       <p>Nacionalidad: {driverDetail.nationality}</p>
-      <p>Teams: {driverDetail.teams}</p>
+      <p>Teams: {driverDetail.teams?.join(", ")}</p>
       <p>Description: {driverDetail.description}</p>
     </div>
   );

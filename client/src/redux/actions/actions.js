@@ -9,6 +9,7 @@ import {
   ORDER_FROM,
   SEARCH_DRIVERS,
   RESTORE_INITIAL_DRIVERS,
+  FILTER_BY_TEAM,
 } from "./action-types";
 
 export function getDrivers() {
@@ -104,6 +105,13 @@ export function postDriver(state) {
     try {
       await axios.post("http://localhost:3001/drivers", state);
       alert("Conductor creado exitosamente!");
-    } catch (error) {}
+    } catch (error) {
+      alert("El conductor no fue creado.");
+    }
   };
 }
+
+export const filterByTeam = (selectedTeam) => ({
+  type: FILTER_BY_TEAM,
+  payload: selectedTeam,
+});

@@ -8,6 +8,7 @@ import {
   ORDER_FROM,
   SEARCH_DRIVERS,
   RESTORE_INITIAL_DRIVERS,
+  FILTER_BY_TEAM,
 } from "./actions/action-types";
 
 let initialState = {
@@ -123,7 +124,7 @@ function rootReducer(state = initialState, action) {
 
         return {
           ...state,
-          allDrivers: driversFilteredAPI,
+          allDrivers: driversFilteredAPI.slice(0, 9),
         };
       }
 
@@ -136,7 +137,17 @@ function rootReducer(state = initialState, action) {
     case RESTORE_INITIAL_DRIVERS:
       return {
         ...state,
-        allDrivers: [...state.allDriversBackUp],
+        allDrivers: [...state.allDriversBackUp].slice(0, 9),
+      };
+
+    case FILTER_BY_TEAM:
+      const filter15 = state.allDriversBackUp.filter((driver) =>
+        driver.teams.includes(action.payload)
+      );
+
+      return {
+        ...state,
+        allDrivers: filter15,
       };
 
     default:

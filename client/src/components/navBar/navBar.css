@@ -1,25 +1,28 @@
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu");
 .navbar {
-    display: flex;
-    align-items: center;
-    background-color: #333333ec;
-    height: 60px;
-    justify-content: space-between;
-    font-family: Ubuntu;
-    background-color:rgb(18, 2, 2);
-}
-
- .salir{
-    padding: 50px;
-    color:red
+   display: flex;
+   align-items: center;
+   background-color: #333333ec;
+   height: 60px;
+   justify-content: space-between;
+   font-family: 'Ubuntu', sans-serif;
+   background-color: rgb(18, 2, 2);
+   padding: 0 20px; /* Agregamos un poco de espacio en los bordes */
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Agregamos una sombra sutitl */
  }
-
+ 
+ .salir {
+   padding: 10px 20px; /* Ajustamos el espaciado del botón SALIR */
+   color: red;
+ }
+ 
  .home {
-    padding: 50px;
-    color:darkgreen
+   padding: 10px 20px; /* Ajustamos el espaciado del botón HOME */
+   color: darkgreen;
  }
-
+ 
  .crear {
-    color:rgb(7, 199, 135)
+   padding: 10px 20px; /* Ajustamos el espaciado del botón CREAR */
+   color: rgb(7, 199, 135);
  }
-
+ 

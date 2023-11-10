@@ -14,8 +14,10 @@ const Home = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getDrivers());
-    dispatch(changePage("current", 0));
+    if (allDrivers.length === 0) {
+      dispatch(getDrivers());
+      dispatch(changePage("current", 0));
+    }
   }, []);
 
   const pagination = (event) => {

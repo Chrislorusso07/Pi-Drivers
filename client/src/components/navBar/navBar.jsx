@@ -5,9 +5,12 @@ import {
   birthdateOrder,
   orderFrom,
   restoreInitialDrivers,
+  filterByTeam,
+  getTeams,
 } from "../../redux/actions/actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import SearchBar from "../searchBar/searchBars";
+import { useEffect } from "react";
 
 const NavBar = () => {
   const dispatch = useDispatch();
@@ -19,6 +22,12 @@ const NavBar = () => {
       dispatch(alphabeticOrder("Z-A"));
     }
   };
+
+  const allTeams = useSelector((state) => state.allTeams);
+
+  useEffect(() => {
+    dispatch(getTeams());
+  }, [dispatch]);
 
   const birthdateOrderr = (event) => {
     const value = event.target.value;
@@ -36,6 +45,10 @@ const NavBar = () => {
   const orderFromm = (event) => {
     const value = event.target.value;
     dispatch(orderFrom(value));
+  };
+
+  const filterTeam = (event) => {
+    dispatch(filterByTeam(event.target.value));
   };
 
   return (
@@ -56,6 +69,15 @@ const NavBar = () => {
       <select onChange={orderFromm}>
         <option value="API">Originales</option>
         <option value="DB">Creados</option>
+      </select>
+
+      <select name="filterTeam" onChange={filterTeam}>
+        <option value="">Selecciona un equipo</option>{" "}
+        {allTeams.map((team) => (
+          <option key={team} value={team}>
+            {team}
+          </option>
+        ))}
       </select>
 
       <Link to={"/home"} className="home">

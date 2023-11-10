@@ -106,9 +106,16 @@ function Form() {
         break;
 
       case "description":
-        if (state.description === "")
+        if (state.description === "") {
           setErrors({ ...errors, description: "Campo requerido." });
-        else setErrors({ ...errors, description: "" });
+        } else if (state.description.length > 250) {
+          setErrors({
+            ...errors,
+            description: "La descripción no puede exceder los 250 caracteres.",
+          });
+        } else {
+          setErrors({ ...errors, description: "" });
+        }
         break;
 
       case "date_of_birth":

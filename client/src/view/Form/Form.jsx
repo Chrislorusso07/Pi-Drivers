@@ -157,7 +157,6 @@ function Form() {
   return (
     <div className="form-container">
       <h1>Crea tu conductor!</h1>
-      {console.log(state)}
       <form className="form" onSubmit={handleSubmit}>
         <label htmlFor="name">Nombre:</label>
         <input type="text" name="name" onChange={handleChange} />
@@ -175,8 +174,8 @@ function Form() {
         <input type="text" name="img" onChange={handleChange} />
         <label className="form-errors">{errors.img}</label>
         <br />
-        <label htmlFor="date_of_birth">Fecha de Nacimiento: (YYYY-MM-DD)</label>
-        <input type="text" name="date_of_birth" onChange={handleChange} />
+        <label htmlFor="date_of_birth">Fecha de Nacimiento:</label>
+        <input type="date" name="date_of_birth" onChange={handleChange} />
         <label className="form-errors">{errors.date_of_birth}</label>
         <br />
         <label className="descripcion" htmlFor="description">

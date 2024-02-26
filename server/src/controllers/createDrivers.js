@@ -16,7 +16,7 @@ const createDriver = async (req, res) => {
     !date_of_birth ||
     !nationality ||
     !last_name ||
-    !teams // Asegúrate de que la variable "teams" esté presente en el cuerpo de la solicitud
+    !teams
   ) {
     throw Error("Missing data. Por favor complete los campos requeridos");
   }
@@ -34,10 +34,6 @@ const createDriver = async (req, res) => {
       let team = await Teams.findOne({ where: { name: el } });
       if (team) {
         await postDriver.addTeam(team);
-        // } else {
-        //   throw Error(`Could not find the team`);
-        // }
-        // }
       }
     });
 

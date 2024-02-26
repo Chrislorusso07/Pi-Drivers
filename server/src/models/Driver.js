@@ -22,8 +22,6 @@ module.exports = (sequelize) => {
     },
     img: {
       type: DataTypes.TEXT,
-      defaultValue:
-        "https://img.redbull.com/images/c_limit,w_1500,h_1000,f_auto,q_auto/redbullcom/2020/8/1/uav3tfc0rc3jj6mvpqmh/max-verstappen-casco",
     },
     nationality: {
       type: DataTypes.STRING,
